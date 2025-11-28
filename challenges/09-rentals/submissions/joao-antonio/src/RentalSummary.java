@@ -24,6 +24,6 @@ public class RentalSummary {
      */
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%.2f", firstName, lastName, email, amount);
+        return String.format("'%s',''%s',''%s',%.2f", firstName, lastName, email, amount);
     }
 }

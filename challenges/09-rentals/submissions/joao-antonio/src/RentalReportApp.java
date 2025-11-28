@@ -57,8 +57,7 @@ public class RentalReportApp {
 
         // 3. Executar a consulta e armazenar em memória
         List<RentalSummary> summaries = executeQuery(dbUrl, dbUser, dbPassword, minAmount);
-        
-        // Se a lista for nula (erro na execução da consulta) ou vazia
+
         if (summaries == null) {
             System.out.println("Não foi possível gerar o relatório devido a um erro na conexão/consulta.");
             return;
@@ -120,10 +119,11 @@ public class RentalReportApp {
             }
 
         } catch (SQLException e) {
-            System.err.println("ERRO de banco de dados (SQL Exception) ao executar a consulta.");
-            System.err.println("SQL State: " + e.getSQLState());
-            System.err.println("Mensagem: " + e.getMessage());
-            return null; 
+            System.err.println("ERRO de banco de dados ao executar a consulta. Verifique os logs do sistema para detalhes.");
+            
+            e.printStackTrace(System.err);
+            
+            return null;
         } catch (Exception e) {
             System.err.println("Ocorreu um erro inesperado: " + e.getMessage());
             return null;
