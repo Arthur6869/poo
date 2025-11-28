@@ -23,7 +23,7 @@ public class RentalSummaryApp {
         try {
             minAmount = Double.parseDouble(args[0]);
         } catch (NumberFormatException e) {
-            System.err.println("Erro: O argumento fornecido não é um número válido.");
+            System.err.println("Erro: O argumento fornecido não é válido.");
             return;
         }
 
@@ -61,8 +61,6 @@ public class RentalSummaryApp {
                 props.getProperty("db.password"));
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            System.out.println("Conectado ao banco de dados com sucesso.");
-
             pstmt.setDouble(1, minAmount);
 
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -76,7 +74,7 @@ public class RentalSummaryApp {
                 }
             }
             
-            System.out.println("Consulta realizada. Registros encontrados: " + summaries.size());
+            System.out.println("Registros encontrados: " + summaries.size());
 
         } catch (SQLException e) {
             System.err.println("Erro de Banco de Dados: " + e.getMessage());
@@ -95,7 +93,7 @@ public class RentalSummaryApp {
                 writer.newLine();
             }
             
-            System.out.println("Relatório gerado com sucesso em: " + csvPath);
+            System.out.println("Relatório gerado em: " + csvPath);
 
         } catch (IOException e) {
             System.err.println("Erro ao gravar o arquivo CSV: " + e.getMessage());
