@@ -134,7 +134,7 @@ public class RentalReportApp {
     /**
      * Grava a lista de objetos RentalSummary no arquivo CSV.
      */
-    private static void writeCsvFile(String pathString, List<RentalSummary> summaries) {
+    private static void writeCsvFile(String pathString, List<RentalSummary> summaries) throws IOException {
         Path path = Paths.get(pathString);
         
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -146,9 +146,6 @@ public class RentalReportApp {
                 writer.write(summary.toString());
                 writer.newLine();
             }
-        } catch (IOException e) {
-            System.err.println("ERRO ao gravar o arquivo CSV em: " + pathString);
-            System.err.println("Detalhe: " + e.getMessage());
         }
     }
 }
